@@ -3,7 +3,7 @@
               Any modifications will be overwritten.
               To include a user specific buildfile here, simply create one in the same
               directory with the processing instruction <?eclipse.ant.import?>
-              as the first entry and export the buildfile again. --><project basedir="." default="build" name="FileInfo">
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="FileSource">
     <property environment="env"/>
     <property name="junit.output.dir" value="junit"/>
     <property name="debuglevel" value="source,lines,vars"/>
@@ -25,12 +25,12 @@
         <pathelement location="../../.p2/pool/plugins/org.junit_4.12.0.v201504281640/junit.jar"/>
         <pathelement location="../../.p2/pool/plugins/org.hamcrest.core_1.3.0.v201303031735.jar"/>
     </path>
-    <path id="FileInfo.classpath">
+    <path id="FileSource.classpath">
         <pathelement location="bin"/>
         <path refid="JUnit 5.libraryclasspath"/>
     </path>
-    <path id="run.InfoExtractor.classpath">
-        <path refid="FileInfo.classpath"/>
+    <path id="run.InfoExtractor (1).classpath">
+        <path refid="FileSource.classpath"/>
         <pathelement location="../../.p2/pool/plugins/org.junit.jupiter.api_5.0.0.v20170910-2246.jar"/>
         <pathelement location="../../.p2/pool/plugins/org.junit.jupiter.engine_5.0.0.v20170910-2246.jar"/>
         <pathelement location="../../.p2/pool/plugins/org.junit.jupiter.migrationsupport_5.0.0.v20170910-2246.jar"/>
@@ -46,8 +46,8 @@
         <pathelement location="../../.p2/pool/plugins/org.junit_4.12.0.v201504281640/junit.jar"/>
         <pathelement location="../../.p2/pool/plugins/org.hamcrest.core_1.3.0.v201303031735.jar"/>
     </path>
-    <path id="run.tester.classpath">
-        <path refid="FileInfo.classpath"/>
+    <path id="run.tester (1).classpath">
+        <path refid="FileSource.classpath"/>
         <pathelement location="../../.p2/pool/plugins/org.junit.jupiter.api_5.0.0.v20170910-2246.jar"/>
         <pathelement location="../../.p2/pool/plugins/org.junit.jupiter.engine_5.0.0.v20170910-2246.jar"/>
         <pathelement location="../../.p2/pool/plugins/org.junit.jupiter.migrationsupport_5.0.0.v20170910-2246.jar"/>
@@ -81,7 +81,7 @@
         <echo message="${ant.project.name}: ${ant.file}"/>
         <javac debug="true" debuglevel="${debuglevel}" destdir="bin" includeantruntime="false" source="${source}" target="${target}">
             <src path="src"/>
-            <classpath refid="FileInfo.classpath"/>
+            <classpath refid="FileSource.classpath"/>
         </javac>
     </target>
     <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
@@ -98,19 +98,18 @@
         <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
         <antcall target="build"/>
     </target>
-    <target name="InfoExtractor">
+    <target name="InfoExtractor (1)">
         <java classname="InfoExtractor" failonerror="true" fork="yes">
-            <arg line="test"/>
-            <classpath refid="run.InfoExtractor.classpath"/>
+            <classpath refid="run.InfoExtractor (1).classpath"/>
         </java>
     </target>
-    <target name="tester">
+    <target name="tester (1)">
         <mkdir dir="${junit.output.dir}"/>
         <junit fork="yes" printsummary="withOutAndErr">
             <formatter type="xml"/>
             <test name="tester" todir="${junit.output.dir}"/>
             <jvmarg line="-ea"/>
-            <classpath refid="run.tester.classpath"/>
+            <classpath refid="run.tester (1).classpath"/>
         </junit>
     </target>
     <target name="junitreport">

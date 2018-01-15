@@ -16,7 +16,6 @@ public class InfoExtractor {
 
 	public static void main(String[] args){
 		
-		//file = new File("src/test.txt");
 		openFile();
 		
 		name = "Name: " + getName();

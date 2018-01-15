@@ -13,7 +13,7 @@ class tester {
 		assertEquals(name, "test.txt");
 		
 		long size = InfoExtractor.getSize();
-		assertEquals(size, 12);
+		assertEquals(size, 16);
 	
 	}
 
