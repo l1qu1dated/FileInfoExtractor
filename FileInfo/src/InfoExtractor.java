@@ -15,43 +15,46 @@ public class InfoExtractor {
 	public static File file;
 
 	public static void main(String[] args){
-		if (args.length > 1 || args.length < 1) {
-			System.out.println("You need to specify the name of the file");
-			
-		}else {
-			file = new File("src/" + args[0]);
 		
-			name = getName();
-			path = getPath();
-			size = "Size: " + getSize() + "\n";
-			mod = getMod();
+		//file = new File("src/test.txt");
+		openFile();
 		
-			writeToFile();
-		}
+		name = "Name: " + getName();
+		path = "Absolute path: " + getPath();
+		size = "Size: " + getSize();
+		mod = "Last modified: " + getMod();
+		
+		writeToFile();
+		
+		System.out.println(name);
+		System.out.println(path);
+		System.out.println(size);
+		System.out.println(mod);
+		
+	}
+	
+	public static void openFile() {
+		file = new File("src/test.txt");
 	}
 	
 	public static String getName() {
-		System.out.println("Name: " + file.getName());
 		
-		return "Name: " + file.getName() + "\n";
+		return file.getName();
 	}
 	
 	public static String getPath() {
-		System.out.println("Absolute path: " + file.getAbsolutePath());
 
-		return "Absolute Path: " + file.getAbsolutePath() + "\n";
+		return file.getAbsolutePath();
 	}
 	
 	public static long getSize() {
-		System.out.println("Size: " + file.length());
 		
 		return  file.length();
 	}
 	
 	public static String getMod() {
-		System.out.println("Last modified: " + new Date(file.lastModified()));
 		
-		return "Last modified: " + new Date(file.lastModified()) + "\n";
+		return new Date(file.lastModified()).toString();
 	}
 	
 	public static void writeToFile() {
