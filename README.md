@@ -4,11 +4,12 @@ This is a small application that can extract information about the file, for exa
 
 ## **Quick Start**
 
-`git clone https://github.com/naperkovskiy/FileInfoExtractor.github
+```
+git clone https://github.com/naperkovskiy/FileInfoExtractor.github
 
 cd FileInfoExtractor/src
 
 javac InfoExtractor.java
 
-java InfoExtractor`
-
+java InfoExtractor
+```
